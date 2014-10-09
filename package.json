@@ -1,0 +1,24 @@
+{
+  "name": "solidus-metadata",
+  "version": "0.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/solidusjs/metadata.git"
+  },
+  "author": {
+    "name": "Eric Lanehart",
+    "email": "eric@sparkart.com",
+    "url": "http://developers.sparkart.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solidusjs/metadata/issues"
+  },
+  "homepage": "https://github.com/solidusjs/metadata",
+  "dependencies": {
+    "crossroads": "^0.12.0",
+    "perfget": "^0.2.1",
+    "strip": "0.0.7"
+  }
+}

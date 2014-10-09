@@ -11,11 +11,11 @@ addMetadata( context, metadata );
 
 ### `metadata`
 
-This module adds a `metadata` object to your context that’s most useful in a page’s layout. Content can be defined for any of the following special properties:
+This module adds a metadata object to your context that’s most useful in a page’s layout. Content can be defined for any of the following special properties:
 
 ##### `title`
 
-Set in real big text in Google Search results and generally prone to truncation, so it really [shouldn’t be longer than 55 characters][seomoz-title].
+Generally prone to truncation, so it really [shouldn’t be longer than 55 characters][seomoz-title].
 
 ##### `description`
 
@@ -27,7 +27,7 @@ A thumbnail, for use in `og:image`, `twitter:image`, etc.
 
 ##### `ns:*`
 
-Any number of namespaced RDF properties can be added and will be passed on with the same key. This includes [Open Graph tags][open], [Twitter Cards][twitter], etc.
+[Open Graph tags][open], [Twitter Cards][twitter], or any other namespaced RDF properties.
 
 ##### `canonical`
 
@@ -75,6 +75,8 @@ Content
 All content is defined as strings. Aside from simple text, certain patterns trigger some additional magic when matched:
 
  - **Files** are strings that look like relative paths. To make sure we’ll check to see if the file actually exists in the filesystem.
+
+ - **URLs** are strings beginning with `http` that are valid URLs. To make sure we’ll [parse the URL][url] and return the value of `href`.
  
  - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Add metadata to your context after preprocessing and of course you’ll have access to that version of the context as well.
 
@@ -94,6 +96,7 @@ copyright &copy; 2014 sparkart group, inc.
 
 [type]: http://ogp.me/#types
 [canonical]: https://support.google.com/webmasters/answer/139066?hl=en
+[url]: http://nodejs.org/api/url.html
 
 [seomoz-title]: http://moz.com/learn/seo/title-tag
 [seomoz-description]: http://moz.com/learn/seo/meta-description
