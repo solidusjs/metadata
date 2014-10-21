@@ -1,11 +1,9 @@
 var crossroads = require('crossroads');
 var _get = require('perfget')._get;
 var strip = require('strip');
+var url = require('url');
 
-var metadataRouter = crossroads.create();
-crossroads.ignoreState = true;
-
-function process( content, context ){
+function transform( content, context ){
   if( !content ) return false;
 
   var isFile = (content.slice(0,1) === '/' && fs.existsSync('./assets' + content))
@@ -14,7 +12,16 @@ function process( content, context ){
 
   if( isFile ) return context.url.origin + content;
 
-  var isData = (!isFile && !content.match(/\s/) && content.match(/\./))
+  var isURL = content.slice(0,4) === 'http'
+    ? true
+    : false;
+
+  if( isURL ){
+    var parsedURL = url.parse(content);
+    if( parsedURL.href ){ return parsedURL.href } else { isURL = false }
+  }
+
+  var isData = (!isFile && !isURL && !content.match(/\s/) && content.match(/\./))
     ? true
     : false;
 
@@ -40,15 +47,17 @@ function setCanonical( path, context ){
 
 module.exports = function( context, metadata ){
 
+  var metadataRouter = crossroads.create();
+
   Object.keys(metadata).forEach(function( pattern ){
     if( metadata[pattern] ){
       var content = metadata[pattern];
 
       metadataRouter.addRoute(pattern, function(){
         context.metadata = {};
-        context.metadata.title = process(content.title, context);
-        context.metadata.description = process(content.description, context);
-        context.metadata.image = process(content.image, context);
+        context.metadata.title = transform(content.title, context);
+        context.metadata.description = transform(content.description, context);
+        context.metadata.image = transform(content.image, context);
         context.metadata['og:type'] = content['og:type'] || 'article';
 
         if( content.canonical ){
