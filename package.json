@@ -19,6 +19,7 @@
   "dependencies": {
     "crossroads": "^0.12.0",
     "perfget": "^0.2.1",
+    "string-humanize": "^1.0.0",
     "strip": "0.0.7"
   }
 }

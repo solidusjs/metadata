@@ -1,5 +1,6 @@
 var crossroads = require('crossroads');
 var _get = require('perfget')._get;
+var humanize = require('string-humanize');
 var strip = require('strip');
 var url = require('url');
 
@@ -59,6 +60,15 @@ module.exports = function( context, metadata ){
         context.metadata.description = transform(content.description, context);
         context.metadata.image = transform(content.image, context);
         context.metadata['og:type'] = content['og:type'] || 'article';
+
+        if( !context.metadata.title ) var page = context.url.pathname.split('/')[1];
+
+        if( !context.metadata.title && context.metadata.description ){
+          context.metadata.title = context.metadata.description + ' ' + humanize(page);
+          context.metadata.description = false;
+        } else if( !context.metadata.title ){
+          content.metadata.title = humanize(page);
+        }
 
         if( content.canonical ){
           context.metadata.canonical = setCanonical(content.canonical, context);
