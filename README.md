@@ -56,7 +56,7 @@ Simple routing patterns are used to match the routes of your pages and map the d
 
 ```
 
-YAML is recommended for sites bigger than a couple of pages. It really helps you focus on the content, and avoid syntax errors.
+YAML is recommended for sites bigger than a couple of pages. It’s a tool that helps direct focus on the content, and avoid syntax errors through a more lenient syntax than JSON. [js-yaml][js-yaml] is a good parsing module.
 
 ```yaml
 /news/{id}/{slug}:
@@ -100,3 +100,5 @@ copyright &copy; 2014 sparkart group, inc.
 
 [seomoz-title]: http://moz.com/learn/seo/title-tag
 [seomoz-description]: http://moz.com/learn/seo/meta-description
+
+[js-yaml]: https://www.npmjs.com/package/js-yaml

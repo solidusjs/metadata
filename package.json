@@ -21,5 +21,8 @@
     "perfget": "^0.2.1",
     "string-humanize": "^1.0.0",
     "strip": "0.0.7"
+  },
+  "devDependencies": {
+    "lab": "^5.2.1"
   }
 }

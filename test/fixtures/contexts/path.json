@@ -1,0 +1,22 @@
+{
+    "url": {
+        "host": "www.example.com",
+        "port": null,
+        "hostname": "www.example.com",
+        "hash": null,
+        "search": "",
+        "query": {},
+        "pathname": "/blog",
+        "path": "/blog",
+        "href": "http://www.example.com/blog",
+        "protocol": "http:",
+        "origin": "http://www.example.com"
+    },
+    "page": {
+        "path": "/mnt/data/2/views/blog.hbs",
+        "route": "/blog"
+    },
+    "parameters": {},
+    "query": {},
+    "resources": {}
+}

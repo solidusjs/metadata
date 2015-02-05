@@ -1,0 +1,30 @@
+{
+    "url": {
+        "host": "www.example.com",
+        "port": null,
+        "hostname": "www.example.com",
+        "hash": null,
+        "search": "",
+        "query": {},
+        "pathname": "/blog/posts/bushwick-artisan",
+        "path": "/blog/posts/bushwick-artisan",
+        "href": "http://www.example.com/blog/posts/bushwick-artisan",
+        "protocol": "http:",
+        "origin": "http://www.example.com"
+    },
+    "page": {
+        "path": "/mnt/data/2/views/blog/posts/{slug}.hbs",
+        "route": "/blog/posts/{slug}"
+    },
+    "parameters": {
+        "slug": "bushwick-artisan"
+    },
+    "query": {},
+    "resources": {
+        "post": {
+          "title": "Wes Anderson pop-up Bushwick artisan",
+          "description": "Chia quinoa meh, you probably haven't heard of them",
+          "image": "http://www.crainsnewyork.com/apps/pbcsi.dll/storyimage/CN/20130310/HOSPITALITY_TOURISM/303109990/AR/0/Brooklyn-Salsa-Co.?q=100&cci_ts=20130312115726"
+        }
+    }
+}
