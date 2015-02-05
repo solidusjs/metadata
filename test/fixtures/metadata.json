@@ -18,7 +18,8 @@
   "/blog": {
     "title": "BLOG",
     "description": "A chronicle of coastal cities and the habits and mannerisms of their inhabitants.",
-    "image": "image.gif"
+    "image": "image.gif",
+    "canonical": "/chronicle"
   },
   "/": {
     "title": "Example",
