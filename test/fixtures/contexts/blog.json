@@ -18,5 +18,22 @@
     },
     "parameters": {},
     "query": {},
-    "resources": {}
+    "resources": {
+      "posts": {
+        "data": [
+          {
+            "slug": "portland-portmanteau",
+            "title": "Mumblecore mixtape cart denizen"
+          },
+          {
+            "slug": "oakland-activist",
+            "title": "Epic Beard Man pop-up Oakland activist"
+          },
+          {
+            "slug": "bushwick-artisan",
+            "title": "Wes Anderson pop-up Bushwick artisan"
+          }
+        ]
+      }
+    }
 }

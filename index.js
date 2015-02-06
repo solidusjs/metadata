@@ -1,11 +1,15 @@
+var PARAMS = /\{([^\}]*)\}/g;
+
 var crossroads = require('crossroads');
-var _get = require('perfget')._get;
+var objectpath = require('object-path');
 var humanize = require('string-humanize');
 var strip = require('strip');
-var url = require('url');
+var urlRegex = require('url-regex');
 
 function transform( content, context ){
   if( !content ) return false;
+
+  // Files
 
   var isFile = (content.slice(0,1) === '/' && fs.existsSync('./assets' + content))
     ? true
@@ -13,23 +17,22 @@ function transform( content, context ){
 
   if( isFile ) return context.url.origin + content;
 
-  var isURL = content.slice(0,4) === 'http'
-    ? true
-    : false;
+  // Context data
 
-  if( isURL ){
-    var parsedURL = url.parse(content);
-    if( parsedURL.href ){ return parsedURL.href } else { isURL = false }
+  if( !content.match(/\s/) && content.match(/\./) ){
+    var data = objectpath.get(context, content);
+
+    content = data
+      ? data
+      : false;
   }
 
-  var isData = (!isFile && !isURL && !content.match(/\s/) && content.match(/\./))
-    ? true
-    : false;
+  // URLs
 
-  if( isData ){
-    context = _get(context);
-    content = context(content);
-    if( content ) content = strip(content);
+  if( content && content.slice(0,4) === 'http' ){
+    content = urlRegex({ exact: true }).test(content)
+      ? content
+      : false;
   }
 
   return content
@@ -38,7 +41,9 @@ function transform( content, context ){
 }
 
 function setCanonical( path, context ){
-  path.match(/\{([^\}]*)\}/g).forEach(function( parameter ){
+  var params = path.match(PARAMS) || [];
+
+  params.forEach(function( parameter ){
     var value = context.parameters[parameter.slice(1,-1)];
     path = path.replace(parameter, value);
   });
@@ -53,6 +58,10 @@ module.exports = function( context, metadata ){
   Object.keys(metadata).forEach(function( pattern ){
     if( metadata[pattern] ){
       var content = metadata[pattern];
+      var priority;
+
+      // Prioritize static routes
+      if( !pattern.match(PARAMS) ) priority = 1;
 
       metadataRouter.addRoute(pattern, function(){
         context.metadata = {};
@@ -74,7 +83,7 @@ module.exports = function( context, metadata ){
           context.metadata.canonical = setCanonical(content.canonical, context);
         }
 
-      });
+      }, priority);
     }
   });
 

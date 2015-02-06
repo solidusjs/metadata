@@ -8,31 +8,31 @@ var metadata = require('./fixtures/metadata.json');
 
 lab.experiment('routing', function(){
 
-  lab.test('adds metadata object to context', function( done ){
-    var context = require('./fixtures/contexts/path.json');
+  lab.test('metadata for a specific page', function( done ){
+    var context = require('./fixtures/contexts/blog.json');
     addMetadata( context, metadata );
-    assert(context.metadata);
+    assert(context.metadata.title === 'Mumblecore mixtape cart denizen');
     done();
   });
 
-  lab.test('matches metadata to page route', function( done ){
-    var context = require('./fixtures/contexts/path.json');
+  lab.test('metadata for pages with parameters', function( done ){
+    var context = require('./fixtures/contexts/post.json');
     addMetadata( context, metadata );
-    assert(context.metadata.title === 'BLOG');
+    assert(context.metadata.title === 'Mumblecore mixtape cart denizen');
     done();
   });
 
   lab.test('prioritizes static routes', function( done ){
-    var context = require('./fixtures/contexts/static.json');
+    var context = require('./fixtures/contexts/post3.json');
     addMetadata( context, metadata );
     assert(context.metadata.title === 'Epic Beard Man pop-up Oakland activist');
     done();
   });
 
-  lab.test('matches route parameters', function( done ){
-    var context = require('./fixtures/contexts/dynamic.json');
+  lab.test('metadata for the root page', function( done ){
+    var context = require('./fixtures/contexts/index.json');
     addMetadata( context, metadata );
-    assert(context.metadata.title === 'Wes Anderson pop-up Bushwick artisan');
+    assert(context.metadata.title === 'Example');
     done();
   });
 

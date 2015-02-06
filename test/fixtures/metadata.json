@@ -10,20 +10,14 @@
     "description": "Typewriter put a bird on it Beer Garden, small batch",
     "image": "https://s-media-cache-ak0.pinimg.com/originals/a3/80/28/a3802819d873bfe8b3993bbba4fb133e.jpg"
   },
-  "/blog/posts/portland-portmanteau": {
-    "title": "Mumblecore mixtape cart denizen",
-    "og:title": "Mumblecore mixtape cart denizen",
-    "description": "nw.sw.ne.se"
-  },
   "/blog": {
-    "title": "BLOG",
-    "description": "A chronicle of coastal cities and the habits and mannerisms of their inhabitants.",
+    "title": "resources.posts.data.0.title",
     "image": "image.gif",
     "canonical": "/chronicle"
   },
   "/": {
     "title": "Example",
-    "description": "This domains may be used as an illustrative example in documents without prior coordination.",
+    "description": "A chronicle of coastal cities and the habits and mannerisms of their inhabitants.",
     "image": "http://somewhere"
   },
   "/*": {

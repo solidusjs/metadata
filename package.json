@@ -18,9 +18,10 @@
   "homepage": "https://github.com/solidusjs/metadata",
   "dependencies": {
     "crossroads": "^0.12.0",
-    "perfget": "^0.2.1",
+    "object-path": "^0.9.0",
     "string-humanize": "^1.0.0",
-    "strip": "0.0.7"
+    "strip": "0.0.7",
+    "url-regex": "^2.1.2"
   },
   "devDependencies": {
     "handlebars": "^1.3.0",

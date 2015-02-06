@@ -13,8 +13,8 @@
         "origin": "http://www.example.com"
     },
     "page": {
-        "path": "/mnt/data/2/views/blog/posts/{slug}.hbs",
-        "route": "/blog/posts/{slug}"
+        "path": "/mnt/data/2/views/blog/posts/bushwick-artisan.hbs",
+        "route": "/blog/posts/bushwick-artisan"
     },
     "parameters": {
         "slug": "bushwick-artisan"
@@ -24,7 +24,7 @@
         "post": {
           "title": "Wes Anderson pop-up Bushwick artisan",
           "description": "Chia quinoa meh, you probably haven't heard of them",
-          "image": "http://www.crainsnewyork.com/apps/pbcsi.dll/storyimage/CN/20130310/HOSPITALITY_TOURISM/303109990/AR/0/Brooklyn-Salsa-Co.?q=100&cci_ts=20130312115726"
+          "thumbnail": "http//www.crainsnewyork.com/apps/pbcsi.dll/storyimage/CN/20130310/HOSPITALITY_TOURISM/303109990/AR/0/Brooklyn-Salsa-Co.?q=100&cci_ts=20130312115726"
         }
     }
 }

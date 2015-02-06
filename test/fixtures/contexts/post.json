@@ -13,13 +13,23 @@
         "origin": "http://www.example.com"
     },
     "page": {
-        "path": "/mnt/data/2/views/blog/posts/{slug}.hbs",
-        "route": "/blog/posts/{slug}"
+        "path": "/mnt/data/2/views/blog/posts/portland-portmanteau.hbs",
+        "route": "/blog/posts/portland-portmanteau"
     },
     "parameters": {
         "slug": "portland-portmanteau"
     },
     "query": {},
+    "resources": {
+        "post": {
+          "title": "Mumblecore mixtape cart denizen",
+          "thumbnail": "http://getrudemagazine.com/home/wp-content/uploads/2013/06/Dopest-Dozen-VooDoo.jpg"
+        },
+        "sloppy": {
+          "title": "DIY photo booth, single-origin coffee master",
+          "thumbnail": "http//www.thisboundlessworld.com/wp-content/uploads/2012/02/Fred-in-Canoe-in-Portlandia.jpg"
+        }
+    },
     "nw": {
       "se": {}
     }
