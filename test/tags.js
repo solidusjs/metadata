@@ -7,11 +7,11 @@ var Lab = require('lab');
 var lab = exports.lab = Lab.script();
 
 var addMetadata = require('../index');
-var metadata = require('./fixtures/metadata.json');
+var metadata = require('./fixtures/metadata/pages.json');
 
 lab.experiment('tags template', function(){
 
-  var context = require('./fixtures/contexts/blog.json');
+  var context = require('./fixtures/contexts/array.json');
   addMetadata( context, metadata );
 
   var source = fs.readFileSync('./tags.hbs', 'utf-8');

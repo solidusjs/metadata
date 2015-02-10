@@ -63,48 +63,49 @@ module.exports = function( context, metadata ){
   });
 
   routes.forEach(function( pattern ){
-    if( metadata[pattern] ){
-      var content = metadata[pattern];
-      var priority;
 
-      // Set priority highest-to-lowest, prioritize static routes
-      priority = !pattern.match(PARAMS)
-        ? 3
-        : 2;
+    if( !metadata[pattern] ) return;
 
-      if( pattern.split('/').pop() === '*' ){
-        priority = 1;
+    var content = metadata[pattern];
+    var priority;
 
-        // Adapt glob syntax to crossroads.js named segment constraint
-        pattern = pattern.replace('*',':glob*:');
-      }
+    // Set priority highest-to-lowest, prioritize static routes
+    priority = !pattern.match(PARAMS)
+      ? 3
+      : 2;
 
-      metadataRouter.addRoute(pattern, function(){
-        context.metadata = {};
-        context.metadata.title = transform(content.title, context);
-        context.metadata.description = transform(content.description, context);
-        context.metadata.image = transform(content.image, context);
-        context.metadata['og:type'] = content['og:type'] || 'article';
+    if( pattern.split('/').pop() === '*' ){
+      priority = 1;
 
-        if( !context.metadata.title ) var page = context.url.pathname.split('/')[1];
-
-        if( !context.metadata.title && context.metadata.description ){
-          context.metadata.title = context.metadata.description + ' ' + humanize(page);
-          context.metadata.description = false;
-        } else if( !context.metadata.title ){
-          content.metadata.title = humanize(page);
-        }
-
-        if( content.canonical ){
-          context.metadata.canonical = setCanonical(content.canonical, context);
-        }
-
-      }, priority);
-
-      metadataRouter.bypassed.add(function(request){
-        context.metadata = false;
-      });
+      // Adapt glob syntax to crossroads.js named segment constraint
+      pattern = pattern.replace('*',':glob*:');
     }
+
+    metadataRouter.addRoute(pattern, function(){
+      context.metadata = {};
+
+      context.metadata.title = content.title
+        ? transform(content.title, context)
+        : humanize(context.url.pathname.split('/')[1]);
+
+      context.metadata.description = content.description
+        ? transform(content.description, context)
+        : false;
+
+      context.metadata.image = content.image
+        ? transform(content.image, context)
+        : false;
+
+      context.metadata.canonical = content.canonical
+        ? setCanonical(content.canonical, context)
+        : false;
+
+      context.metadata['og:type'] = content['og:type'] || 'article';
+    }, priority);
+
+    metadataRouter.bypassed.add(function(request){
+      context.metadata = false;
+    });
   });
 
   metadataRouter.parse(context.url.path.replace('.json',''), [context]);

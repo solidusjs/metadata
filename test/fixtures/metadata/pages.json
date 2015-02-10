@@ -15,6 +15,9 @@
     "image": "image.gif",
     "canonical": "/chronicle"
   },
+  "/photos/{slug}": {
+    "test": "image.jpg"
+  },
   "/": {
     "title": "Example",
     "description": "A chronicle of coastal cities and the habits and mannerisms of their inhabitants.",
