@@ -91,7 +91,7 @@ All content is defined as strings. Aside from simple text, certain patterns trig
 
  - **URLs** are strings beginning with `http` that are valid URLs. To make sure we’ll [parse the URL][url] and return the value of `href`.
  
- - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Add metadata to your context after preprocessing and of course you’ll have access to that version of the context as well.
+ - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Array indexes can also be selected with dots or brackets. Add metadata to your context after preprocessing and of course you’ll have access to that version of the context as well.
 
  - **Canonical Path Variables** can be specified in the same `{curly}` syntax as page routes, and will be replaced with any like-named variables from the matched route.
 

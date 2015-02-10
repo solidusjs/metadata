@@ -20,6 +20,10 @@ function transform( content, context ){
   // Context data
 
   if( !content.match(/\s/) && content.match(/\./) ){
+
+    // Normalize array selection syntax
+    content = content.replace(/\[|\]/g,'.').replace(/\.\./g,'.');
+
     var data = objectpath.get(context, content);
 
     content = data
@@ -63,7 +67,6 @@ module.exports = function( context, metadata ){
   });
 
   routes.forEach(function( pattern ){
-
     if( !metadata[pattern] ) return;
 
     var content = metadata[pattern];
