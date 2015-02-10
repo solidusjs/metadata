@@ -55,13 +55,24 @@ module.exports = function( context, metadata ){
 
   var metadataRouter = crossroads.create();
 
-  Object.keys(metadata).forEach(function( pattern ){
+  // Sort routes to prioritize deeper routes
+  var routes = Object.keys(metadata).sort(function( a, b ){
+    return b.match(/\//g).length > a.match(/\//g).length
+      ? 1
+      : -1;
+  });
+
+  routes.forEach(function( pattern ){
     if( metadata[pattern] ){
       var content = metadata[pattern];
       var priority;
 
-      // Prioritize static routes
-      if( !pattern.match(PARAMS) ) priority = 1;
+      // Set priority highest-to-lowest, prioritize static routes
+      priority = !pattern.match(PARAMS)
+        ? 3
+        : 2;
+
+      if( pattern.match(/\*/) ) priority = 1;
 
       metadataRouter.addRoute(pattern, function(){
         context.metadata = {};

@@ -36,4 +36,15 @@ lab.experiment('routing', function(){
     done();
   });
 
+  lab.test('falls back to wildcard routes', function( done ){
+    var metadata = require('./fixtures/metadata-with-fallback.json');
+    var context = require('./fixtures/contexts/photo.json');
+    addMetadata( context, metadata );
+    assert(context.metadata.title === 'Halfway');
+    var context = require('./fixtures/contexts/events.json');
+    addMetadata( context, metadata );
+    assert(context.metadata.title === 'Rock Bottom');
+    done();
+  });
+
 });

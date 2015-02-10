@@ -68,6 +68,19 @@ YAML is recommended for sites bigger than a couple of pages. It’s a tool that 
   canonical: /news/{id}/{slug}
 ```
 
+### Fallbacks / Defaults
+
+It’s a good idea to add at least one fallback route to provide some default metadata when no other routes are matched. Just add a glob star at the end of your route:
+
+```yaml
+/:default*::
+
+  title: The infinite is possible.
+  description: You can do anything, anything at all.
+```
+
+Whenever possible provide a [descriptive and concise][title] for your pages to avoid filling indexes with repetitive, unhelpful content. Fallbacks should not be relied upon as they will do just that if not used sparingly.
+
 
 Content
 -------
@@ -81,7 +94,6 @@ All content is defined as strings. Aside from simple text, certain patterns trig
  - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Add metadata to your context after preprocessing and of course you’ll have access to that version of the context as well.
 
  - **Canonical Path Variables** can be specified in the same `{curly}` syntax as page routes, and will be replaced with any like-named variables from the matched route.
-
 
 ----
 **[MIT](LICENSE) LICENSE** <br>
