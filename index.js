@@ -100,6 +100,10 @@ module.exports = function( context, metadata ){
         }
 
       }, priority);
+
+      metadataRouter.bypassed.add(function(request){
+        context.metadata = false;
+      });
     }
   });
 
