@@ -3,6 +3,7 @@ var PARAMS = /\{([^\}]*)\}/g;
 var crossroads = require('crossroads');
 var objectpath = require('object-path');
 var humanize = require('string-humanize');
+var path = require('path');
 var strip = require('strip');
 var urlRegex = require('url-regex');
 
@@ -10,12 +11,11 @@ function transform( content, context ){
   if( !content ) return false;
 
   // Files
-
-  var isFile = (content.slice(0,1) === '/' && fs.existsSync('./assets' + content))
+  var isFile = (content.split('.').pop().match(/gif|jpg|jpeg|png/))
     ? true
     : false;
 
-  if( isFile ) return context.url.origin + content;
+  if( isFile ) return path.join(context.url.origin, content);
 
   // Context data
 
@@ -40,15 +40,15 @@ function transform( content, context ){
     : false;
 }
 
-function setCanonical( path, context ){
-  var params = path.match(PARAMS) || [];
+function setCanonical( originPath, context ){
+  var params = originPath.match(PARAMS) || [];
 
   params.forEach(function( parameter ){
     var value = context.parameters[parameter.slice(1,-1)];
-    path = path.replace(parameter, value);
+    originPath = originPath.replace(parameter, value);
   });
 
-  return context.url.origin + path;
+  return path.join(context.url.origin, originPath);
 }
 
 module.exports = function( context, metadata ){
@@ -72,7 +72,12 @@ module.exports = function( context, metadata ){
         ? 3
         : 2;
 
-      if( pattern.match(/\*/) ) priority = 1;
+      if( pattern.split('/').pop() === '*' ){
+        priority = 1;
+
+        // Adapt glob syntax to crossroads.js named segment constraint
+        pattern = pattern.replace('*',':glob*:');
+      }
 
       metadataRouter.addRoute(pattern, function(){
         context.metadata = {};

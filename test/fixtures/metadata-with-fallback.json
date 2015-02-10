@@ -20,11 +20,11 @@
     "description": "A chronicle of coastal cities and the habits and mannerisms of their inhabitants.",
     "image": "http://somewhere"
   },
-  "/:default*:": {
+  "/*": {
     "title": "Rock Bottom",
     "description": "Moving downward, typically rapidly and freely without control, from a higher to a lower level."
   },
-  "/photos/:default*:": {
+  "/photos/*": {
     "title": "Halfway",
     "description": "An intermediate state or condition."
   }

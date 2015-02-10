@@ -73,7 +73,7 @@ YAML is recommended for sites bigger than a couple of pages. It’s a tool that 
 It’s a good idea to add at least one fallback route to provide some default metadata when no other routes are matched. Just add a glob star at the end of your route:
 
 ```yaml
-/:default*::
+/*:
 
   title: The infinite is possible.
   description: You can do anything, anything at all.
