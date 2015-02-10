@@ -70,10 +70,10 @@ YAML is recommended for sites bigger than a couple of pages. It’s a tool that 
 
 ### Fallbacks / Defaults
 
-It’s a good idea to add at least one fallback route to provide some default metadata when no other routes are matched. Just add a glob star at the end of your route:
+It’s a good idea to add at least one fallback route to provide some default metadata when no other routes are matched. Just add a `*` at the end of a path a page should fallback to:
 
 ```yaml
-/*:
+/anything/*:
 
   title: The infinite is possible.
   description: You can do anything, anything at all.
@@ -87,17 +87,17 @@ Content
 
 All content is defined as strings. Aside from simple text, certain patterns trigger some additional magic when matched:
 
- - **Files** are strings that look like relative paths. To make sure we’ll check to see if the file actually exists in the filesystem.
-
- - **URLs** are strings beginning with `http` that are valid URLs. To make sure we’ll [parse the URL][url] and return the value of `href`.
+ - **Files** are strings that look like relative paths and end with an image file extension: `gif|jpg|jpeg|png`
  
- - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Array indexes can also be selected with dots or brackets. Add metadata to your context after preprocessing and of course you’ll have access to that version of the context as well.
+ - **URLs** are strings beginning with `http` that are [valid URLs][url]
+ 
+ - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Items in an array can be selected by their index with dot or bracket syntax. Properties can also be accessed from within text using `{{property}}` syntax. There’s no limit to how many you can select.
 
- - **Canonical Path Variables** can be specified in the same `{curly}` syntax as page routes, and will be replaced with any like-named variables from the matched route.
+ - **Canonical Path Variables** can be specified in the same `{curly}` syntax as page routes, and will be replaced with any like-named variables from the matched route. Relative paths will be automatically prefixed with the current host.
 
 ----
 **[MIT](LICENSE) LICENSE** <br>
-copyright &copy; 2014 sparkart group, inc.
+copyright &copy; 2015 sparkart group, inc.
 
 
 [rdfa]: http://rdfa.info
@@ -108,8 +108,9 @@ copyright &copy; 2014 sparkart group, inc.
 
 [type]: http://ogp.me/#types
 [canonical]: https://support.google.com/webmasters/answer/139066?hl=en
-[url]: http://nodejs.org/api/url.html
+[url]: https://github.com/kevva/url-regex
 
+[title]: https://support.google.com/webmasters/answer/35624?hl=en
 [seomoz-title]: http://moz.com/learn/seo/title-tag
 [seomoz-description]: http://moz.com/learn/seo/meta-description
 

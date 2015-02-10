@@ -20,5 +20,10 @@
       "slug": "Smile!"
     },
     "query": {},
-    "resources": {}
+    "resources": {
+      "photo": {
+        "date": "3-15-2015",
+        "caption": "someone smiling"
+      }
+    }
 }

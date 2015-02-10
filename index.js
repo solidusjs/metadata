@@ -1,4 +1,5 @@
 var PARAMS = /\{([^\}]*)\}/g;
+var PROPS = /\{\{([^\}]*)\}\}/g;
 
 var crossroads = require('crossroads');
 var objectpath = require('object-path');
@@ -7,41 +8,49 @@ var path = require('path');
 var strip = require('strip');
 var urlRegex = require('url-regex');
 
-function transform( content, context ){
+function parse( content, context ){
   if( !content ) return false;
 
   // Files
-  var isFile = (content.split('.').pop().match(/gif|jpg|jpeg|png/))
-    ? true
-    : false;
-
-  if( isFile ) return path.join(context.url.origin, content);
-
-  // Context data
-
-  if( !content.match(/\s/) && content.match(/\./) ){
-
-    // Normalize array selection syntax
-    content = content.replace(/\[|\]/g,'.').replace(/\.\./g,'.');
-
-    var data = objectpath.get(context, content);
-
-    content = data
-      ? data
+  if( content.split('.').pop().match(/gif|jpg|jpeg|png/) ){
+    return content
+      ? path.join(context.url.origin, content)
       : false;
   }
 
   // URLs
-
   if( content && content.slice(0,4) === 'http' ){
-    content = urlRegex({ exact: true }).test(content)
+    return urlRegex({ exact: true }).test(content)
       ? content
       : false;
   }
 
-  return content
-    ? content
-    : false;
+  ///////////////////
+  // context data //
+  /////////////////
+
+  if( content.match(/\./) && (!content.match(/\s/) || content.match(/\{{/)) ){
+    // Normalize array selection syntax
+    content = content.replace(/\[|\]/g,'.').replace(/\.\./g,'.');
+
+    var props = content.match(PROPS);
+
+    if( props ){
+      props.forEach(function( prop ){
+        var key = (prop.substr(2, prop.length - 4)).trim();
+        var data = objectpath.get(context, key);
+        if( data ) content = content.replace(prop, data);
+      });
+    } else {
+      var content = objectpath.get(context, content);
+    }
+
+    return content
+      ? content
+      : false;
+  }
+
+  return content;
 }
 
 function setCanonical( originPath, context ){
@@ -88,15 +97,15 @@ module.exports = function( context, metadata ){
       context.metadata = {};
 
       context.metadata.title = content.title
-        ? transform(content.title, context)
+        ? parse(content.title, context)
         : humanize(context.url.pathname.split('/')[1]);
 
       context.metadata.description = content.description
-        ? transform(content.description, context)
+        ? parse(content.description, context)
         : false;
 
       context.metadata.image = content.image
-        ? transform(content.image, context)
+        ? parse(content.image, context)
         : false;
 
       context.metadata.canonical = content.canonical
