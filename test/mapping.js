@@ -54,6 +54,14 @@ lab.experiment('mapping', function(){
     done();
   });
 
+  lab.test('HTML strings', function( done ){
+    var metadata = require('./fixtures/metadata/html-strings.json');
+    var context = require('./fixtures/contexts/post-with-resources.json');
+    addMetadata( context, metadata );
+    assert(context.metadata.title === 'The original: DIY photo booth, single-origin coffee master');
+    done();
+  });
+
   lab.test('image URLs', function( done ){
     var context = require('./fixtures/contexts/post-with-resources.json');
     addMetadata( context, metadata );

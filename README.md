@@ -91,8 +91,8 @@ All content is defined as strings. Aside from simple text, certain patterns trig
  
  - **URLs** are strings beginning with `http` that are [valid URLs][url]
  
- - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Items in an array can be selected by their index with dot or bracket syntax. Properties can also be accessed from within text using `{{property}}` syntax. There’s no limit to how many you can select.
-
+ - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Items in an array can be selected by their index with dot or bracket syntax. Properties can also be accessed from within text using `{{property}}` syntax. There’s no limit to how many you can select. Any markup in the resulting string will be stripped.
+ 
  - **Canonical Path Variables** can be specified in the same `{curly}` syntax as page routes, and will be replaced with any like-named variables from the matched route. Relative paths will be automatically prefixed with the current host.
 
 ----

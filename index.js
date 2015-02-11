@@ -46,7 +46,7 @@ function parse( content, context ){
     }
 
     return content
-      ? content
+      ? strip(content)
       : false;
   }
 
