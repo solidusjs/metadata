@@ -1,6 +1,8 @@
 var PARAMS = /\{([^\}]*)\}/g;
 var PROPS = /\{\{([^\}]*)\}\}/g;
+var ROUTES = /^\/[A-Za-z{}_\-\*\/]*$/;
 
+var assert = require('assert');
 var crossroads = require('crossroads');
 var objectpath = require('object-path');
 var humanize = require('string-humanize');
@@ -9,7 +11,6 @@ var strip = require('strip');
 var urlRegex = require('url-regex');
 
 function parse( content, context ){
-  if( !content ) return false;
 
   // Files
   if( content.split('.').pop().match(/gif|jpg|jpeg|png/) ){
@@ -19,7 +20,7 @@ function parse( content, context ){
   }
 
   // URLs
-  if( content && content.slice(0,4) === 'http' ){
+  if( content.slice(0,4) === 'http' ){
     return urlRegex({ exact: true }).test(content)
       ? content
       : false;
@@ -64,7 +65,16 @@ function setCanonical( originPath, context ){
   return path.join(context.url.origin, originPath);
 }
 
-module.exports = function( context, metadata ){
+/**
+ * Adds mapped metadata to a Solidus context.
+ * @param {object} context - Solidus context including a URL object.
+ * @param {object} metadata - metadata configuration.
+ */
+
+var addMetadata = function( context, metadata ){
+  assert.deepEqual(typeof context, 'object', 'context argument must be a Solidus context');
+  assert.deepEqual(typeof context.url, 'object', 'Solidus context must include a URL object');
+  assert.deepEqual(typeof metadata, 'object', 'metadata argument must be a valid configuration object');
 
   var metadataRouter = crossroads.create();
 
@@ -76,7 +86,7 @@ module.exports = function( context, metadata ){
   });
 
   routes.forEach(function( pattern ){
-    if( !metadata[pattern] ) return;
+    if( ROUTES.test(pattern) === false ) throw new Error(pattern + ' is not a supported route');
 
     var content = metadata[pattern];
     var priority;
@@ -124,3 +134,10 @@ module.exports = function( context, metadata ){
 
   return context;
 };
+
+/**
+ * Metadata module.
+ * @module solidus-metadata
+ */
+
+module.exports = addMetadata;

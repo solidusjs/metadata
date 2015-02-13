@@ -1,0 +1,8 @@
+{
+  "/blog/:posts:/{post}": {
+    "title": "resources.post.title",
+    "description": "resources.post.description",
+    "image": "resources.post.thumbnail",
+    "canonical": "/chronicle/{post}"
+  }
+}

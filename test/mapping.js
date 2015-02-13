@@ -76,7 +76,4 @@ lab.experiment('mapping', function(){
     done();
   });
 
-  lab.test('image files', function( done ){ done(); });
-  lab.test('missing image files', function( done ){ done(); });
-
 });
