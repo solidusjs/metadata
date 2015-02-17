@@ -1,13 +1,13 @@
 {
   "name": "solidus-metadata",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "lab -v"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/solidusjs/metadata.git"
+  },
+  "scripts": {
+    "test": "lab -v"
   },
   "author": {
     "name": "Eric Lanehart",
@@ -19,6 +19,20 @@
     "url": "https://github.com/solidusjs/metadata/issues"
   },
   "homepage": "https://github.com/solidusjs/metadata",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "LICENSE",
+    "index.js",
+    "tags.hbs"
+  ],
+  "keywords": [
+    "ecosystem:solidus",
+    "solidus",
+    "seo",
+    "metadata"
+  ],
   "dependencies": {
     "crossroads": "^0.12.0",
     "object-path": "^0.9.0",

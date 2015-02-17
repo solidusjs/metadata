@@ -1,4 +1,4 @@
-# [solidus](http://github.com/solidusjs)-metadata
+# [solidus](http://github.com/solidusjs)-metadata ![CircleCI Status][circleci]
 
 [RDFa][rdfa], [Schema.org][schema], [Open Graph][open], and good ol’ [meta tags][meta]. The semantic web is really an actual thing! But getting the right tags and code in place takes time. That’s time you _should_ be spending optimizing the content as best as you can. The plethora of API data available in a typical Solidus site offers plenty to work with. But passing that content into the right tags remains tricky, until now.
 
@@ -115,3 +115,5 @@ copyright &copy; 2015 sparkart group, inc.
 [seomoz-description]: http://moz.com/learn/seo/meta-description
 
 [js-yaml]: https://www.npmjs.com/package/js-yaml
+
+[circleci]: https://circleci.com/gh/solidusjs/metadata.png?style=shield&circle-token=2948d08424280236cf29a00627c2ed976bb291c2
