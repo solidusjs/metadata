@@ -1,0 +1,5 @@
+{
+  "/blog/posts/portland-portmanteau": {
+    "title": "The original: {{ resources.related.title }}"
+  }
+}

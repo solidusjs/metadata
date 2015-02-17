@@ -1,0 +1,22 @@
+{
+    "url": {
+        "host": "www.example.com",
+        "port": null,
+        "hostname": "www.example.com",
+        "hash": null,
+        "search": "",
+        "query": {},
+        "pathname": "/events",
+        "path": "/events",
+        "href": "http://www.example.com/events",
+        "protocol": "http:",
+        "origin": "http://www.example.com"
+    },
+    "page": {
+        "path": "/mnt/data/2/views/events.hbs",
+        "route": "/events"
+    },
+    "parameters": {},
+    "query": {},
+    "resources": {}
+}

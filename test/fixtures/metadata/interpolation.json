@@ -1,0 +1,5 @@
+{
+  "/photos/{slug}": {
+    "description": "Photo taken {{ resources.photo.date }} of {{resources.photo.caption}}"
+  }
+}

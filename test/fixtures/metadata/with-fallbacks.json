@@ -1,0 +1,31 @@
+{
+  "/blog/posts/{post}": {
+    "title": "resources.post.title",
+    "description": "resources.post.description",
+    "image": "resources.post.thumbnail",
+    "canonical": "/chronicle/{post}"
+  },
+  "/blog/posts/oakland-activist": {
+    "title": "Epic Beard Man pop-up Oakland activist",
+    "description": "Typewriter put a bird on it Beer Garden, small batch",
+    "image": "https://s-media-cache-ak0.pinimg.com/originals/a3/80/28/a3802819d873bfe8b3993bbba4fb133e.jpg"
+  },
+  "/blog": {
+    "title": "resources.posts.data.0.title",
+    "image": "image.gif",
+    "canonical": "/chronicle"
+  },
+  "/": {
+    "title": "Example",
+    "description": "A chronicle of coastal cities and the habits and mannerisms of their inhabitants.",
+    "image": "http://somewhere"
+  },
+  "/*": {
+    "title": "Rock Bottom",
+    "description": "Moving downward, typically rapidly and freely without control, from a higher to a lower level."
+  },
+  "/photos/*": {
+    "title": "Halfway",
+    "description": "An intermediate state or condition."
+  }
+}

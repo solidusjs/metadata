@@ -1,0 +1,36 @@
+{
+    "url": {
+        "host": "www.example.com",
+        "port": null,
+        "hostname": "www.example.com",
+        "hash": null,
+        "search": "",
+        "query": {},
+        "pathname": "/blog/posts/portland-portmanteau",
+        "path": "/blog/posts/portland-portmanteau",
+        "href": "http://www.example.com/blog/posts/portland-portmanteau",
+        "protocol": "http:",
+        "origin": "http://www.example.com"
+    },
+    "page": {
+        "path": "/mnt/data/2/views/blog/posts/portland-portmanteau.hbs",
+        "route": "/blog/posts/portland-portmanteau"
+    },
+    "parameters": {
+        "slug": "portland-portmanteau"
+    },
+    "query": {},
+    "resources": {
+        "post": {
+          "title": "Mumblecore mixtape cart denizen",
+          "thumbnail": "http://getrudemagazine.com/home/wp-content/uploads/2013/06/Dopest-Dozen-VooDoo.jpg"
+        },
+        "related": {
+          "title": "DIY photo booth, <strong>single-origin</strong> coffee master",
+          "thumbnail": "http//www.thisboundlessworld.com/wp-content/uploads/2012/02/Fred-in-Canoe-in-Portlandia.jpg"
+        }
+    },
+    "nw": {
+      "se": {}
+    }
+}

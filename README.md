@@ -11,11 +11,11 @@ addMetadata( context, metadata );
 
 ### `metadata`
 
-This module adds a `metadata` object to your context that’s most useful in a page’s layout. Content can be defined for any of the following special properties:
+This module adds a metadata object to your context that’s most useful in a page’s layout. Content can be defined for any of the following special properties:
 
 ##### `title`
 
-Set in real big text in Google Search results and generally prone to truncation, so it really [shouldn’t be longer than 55 characters][seomoz-title].
+Generally prone to truncation, so it really [shouldn’t be longer than 55 characters][seomoz-title].
 
 ##### `description`
 
@@ -27,7 +27,7 @@ A thumbnail, for use in `og:image`, `twitter:image`, etc.
 
 ##### `ns:*`
 
-Any number of namespaced RDF properties can be added and will be passed on with the same key. This includes [Open Graph tags][open], [Twitter Cards][twitter], etc.
+[Open Graph tags][open], [Twitter Cards][twitter], or any other namespaced RDF properties.
 
 ##### `canonical`
 
@@ -56,7 +56,7 @@ Simple routing patterns are used to match the routes of your pages and map the d
 
 ```
 
-YAML is recommended for sites bigger than a couple of pages. It really helps you focus on the content, and avoid syntax errors.
+YAML is recommended for sites bigger than a couple of pages. It’s a tool that helps direct focus on the content, and avoid syntax errors through a more lenient syntax than JSON. [js-yaml][js-yaml] is a good parsing module.
 
 ```yaml
 /news/{id}/{slug}:
@@ -68,22 +68,36 @@ YAML is recommended for sites bigger than a couple of pages. It really helps you
   canonical: /news/{id}/{slug}
 ```
 
+### Fallbacks / Defaults
+
+It’s a good idea to add at least one fallback route to provide some default metadata when no other routes are matched. Just add a `*` at the end of a path a page should fallback to:
+
+```yaml
+/anything/*:
+
+  title: The infinite is possible.
+  description: You can do anything, anything at all.
+```
+
+Whenever possible provide a [descriptive and concise][title] for your pages to avoid filling indexes with repetitive, unhelpful content. Fallbacks should not be relied upon as they will do just that if not used sparingly.
+
 
 Content
 -------
 
 All content is defined as strings. Aside from simple text, certain patterns trigger some additional magic when matched:
 
- - **Files** are strings that look like relative paths. To make sure we’ll check to see if the file actually exists in the filesystem.
+ - **Files** are strings that look like relative paths and end with an image file extension: `gif|jpg|jpeg|png`
  
- - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Add metadata to your context after preprocessing and of course you’ll have access to that version of the context as well.
-
- - **Canonical Path Variables** can be specified in the same `{curly}` syntax as page routes, and will be replaced with any like-named variables from the matched route.
-
+ - **URLs** are strings beginning with `http` that are [valid URLs][url]
+ 
+ - **Data** is a string without any spaces that can select anything in your context with dot notation. No worries, deeply nested properties will be safely accessed. Items in an array can be selected by their index with dot or bracket syntax. Properties can also be accessed from within text using `{{property}}` syntax. There’s no limit to how many you can select. Any markup in the resulting string will be stripped.
+ 
+ - **Canonical Path Variables** can be specified in the same `{curly}` syntax as page routes, and will be replaced with any like-named variables from the matched route. Relative paths will be automatically prefixed with the current host.
 
 ----
 **[MIT](LICENSE) LICENSE** <br>
-copyright &copy; 2014 sparkart group, inc.
+copyright &copy; 2015 sparkart group, inc.
 
 
 [rdfa]: http://rdfa.info
@@ -94,6 +108,10 @@ copyright &copy; 2014 sparkart group, inc.
 
 [type]: http://ogp.me/#types
 [canonical]: https://support.google.com/webmasters/answer/139066?hl=en
+[url]: https://github.com/kevva/url-regex
 
+[title]: https://support.google.com/webmasters/answer/35624?hl=en
 [seomoz-title]: http://moz.com/learn/seo/title-tag
 [seomoz-description]: http://moz.com/learn/seo/meta-description
+
+[js-yaml]: https://www.npmjs.com/package/js-yaml

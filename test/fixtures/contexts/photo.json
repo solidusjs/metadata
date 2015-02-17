@@ -1,0 +1,29 @@
+{
+    "url": {
+        "host": "www.example.com",
+        "port": null,
+        "hostname": "www.example.com",
+        "hash": null,
+        "search": "",
+        "query": {},
+        "pathname": "/photos/smile",
+        "path": "/photos/smile",
+        "href": "http://www.example.com/photos/smile",
+        "protocol": "http:",
+        "origin": "http://www.example.com"
+    },
+    "page": {
+        "path": "/mnt/data/2/views/photo.hbs",
+        "route": "/photos/{slug}"
+    },
+    "parameters": {
+      "slug": "Smile!"
+    },
+    "query": {},
+    "resources": {
+      "photo": {
+        "date": "3-15-2015",
+        "caption": "someone smiling"
+      }
+    }
+}
