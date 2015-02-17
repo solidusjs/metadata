@@ -2,6 +2,9 @@
   "name": "solidus-metadata",
   "version": "0.0.0",
   "main": "index.js",
+  "scripts": {
+    "test": "lab -v"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/solidusjs/metadata.git"
