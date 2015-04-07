@@ -1,6 +1,6 @@
 var PARAMS = /\{([^\}]*)\}/g;
 var PROPS = /\{\{([^\}]*)\}\}/g;
-var ROUTES = /^\/[A-Za-z{}_\-\*\/]*$/;
+var ROUTES = /^\/[A-Za-z0-9{}_\-\*\/]*$/;
 
 var assert = require('assert');
 var crossroads = require('crossroads');

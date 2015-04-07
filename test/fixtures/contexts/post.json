@@ -6,18 +6,18 @@
         "hash": null,
         "search": "",
         "query": {},
-        "pathname": "/blog/posts/oakland-activist",
-        "path": "/blog/posts/oakland-activist",
-        "href": "http://www.example.com/blog/posts/oakland-activist",
+        "pathname": "/blog/posts/oakland-activist-2",
+        "path": "/blog/posts/oakland-activist-2",
+        "href": "http://www.example.com/blog/posts/oakland-activist-2",
         "protocol": "http:",
         "origin": "http://www.example.com"
     },
     "page": {
-        "path": "/mnt/data/2/views/blog/posts/oakland-activist.hbs",
-        "route": "/blog/posts/oakland-activist"
+        "path": "/mnt/data/2/views/blog/posts/oakland-activist-2.hbs",
+        "route": "/blog/posts/oakland-activist-2"
     },
     "parameters": {
-        "slug": "oakland-activist"
+        "slug": "oakland-activist-2"
     },
     "query": {},
     "resources": {}

@@ -9,16 +9,16 @@ var metadata = require('./fixtures/metadata/pages.json');
 lab.experiment('routing', function(){
 
   lab.test('metadata for a specific page', function( done ){
-    var context = require('./fixtures/contexts/array.json');
+    var context = require('./fixtures/contexts/post-with-resources.json');
     addMetadata( context, metadata );
     assert(context.metadata.title === 'Mumblecore mixtape cart denizen');
     done();
   });
 
   lab.test('metadata for pages with parameters', function( done ){
-    var context = require('./fixtures/contexts/post-with-resources.json');
+    var context = require('./fixtures/contexts/post.json');
     addMetadata( context, metadata );
-    assert(context.metadata.title === 'Mumblecore mixtape cart denizen');
+    assert(context.metadata.title === 'Epic Beard Man pop-up Oakland activist');
     done();
   });
 
